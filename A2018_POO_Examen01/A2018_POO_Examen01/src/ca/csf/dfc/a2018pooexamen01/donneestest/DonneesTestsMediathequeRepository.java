@@ -2,8 +2,10 @@ package ca.csf.dfc.a2018pooexamen01.donneestest;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import ca.csf.dfc.a2018pooexamen01.mediatheque.LivreBroche;
 import ca.csf.dfc.a2018pooexamen01.mediatheque.Media;
@@ -37,27 +39,33 @@ public class DonneesTestsMediathequeRepository implements MediathequeRepository 
 	}
 
 	@Override
-	public List<Media> trouverMediaParExpression(String p_TexteExpression) {
+	public List<Media> trouverMediaParExpressionEtType(String p_TexteExpression, String p_TypeMedia) {
 		String texteExpression = p_TexteExpression.toLowerCase();
+		Stream<Media> streamMedia = m_ListeMedia
+										.stream()
+										.filter(m -> m.getTitre().toLowerCase().contains(texteExpression));
+		if (p_TypeMedia != null) {
+			streamMedia = streamMedia
+							.filter(typeMediaNotNull -> typeMediaNotNull.getType().contains(p_TypeMedia));
+		}
 		
-		return m_ListeMedia
-				.stream()
-				.filter(m -> m.getTitre().toLowerCase().contains(texteExpression))
+		
+		return streamMedia
 				.collect(Collectors.toList());
 	}
 
 	public DonneesTestsMediathequeRepository() {
 		this.m_ListeMedia = Arrays.asList(
 				new LivreBroche(1, "Les Fourmis"), new LivreBroche(2, "Le Jour des fourmis"),
-				new LivreBroche(3, "La Révolution des fourmis"), new LivreBroche(4, "Les Thanatonautes"),
+				new LivreBroche(3, "La Rï¿½volution des fourmis"), new LivreBroche(4, "Les Thanatonautes"),
 				new LivreBroche(5, "L'Empire des anges"), new LivreBroche(6, "Nous les dieux"),
-				new LivreBroche(7, "Le Souffle des dieux"), new LivreBroche(8, "Le Mystère des dieux"),
-				new LivreBroche(9, "Le Père de nos pères"), new LivreBroche(10, "L'Ultime Secret"),
-				new LivreBroche(11, "Le Rire du cyclope"), new LivreBroche(12, "Troisième Humanité"),
+				new LivreBroche(7, "Le Souffle des dieux"), new LivreBroche(8, "Le Mystï¿½re des dieux"),
+				new LivreBroche(9, "Le Pï¿½re de nos pï¿½res"), new LivreBroche(10, "L'Ultime Secret"),
+				new LivreBroche(11, "Le Rire du cyclope"), new LivreBroche(12, "Troisiï¿½me Humanitï¿½"),
 				new LivreBroche(13, "Les Micro-Humains"), new LivreBroche(14, "La Voix de la Terre"),
-				new LivreBroche(15, "Le Papillon des étoiles"), new LivreBroche(16, "Le Miroir de Cassandre"),
-				new LivreBroche(17, "Le Sixième Sommeil"), new LivreBroche(18, "Demain les chats"),
-				new LivreBroche(19, "Depuis l'au-delà"), new LivreBroche(20, "La Boîte de Pandore")
+				new LivreBroche(15, "Le Papillon des ï¿½toiles"), new LivreBroche(16, "Le Miroir de Cassandre"),
+				new LivreBroche(17, "Le Sixiï¿½me Sommeil"), new LivreBroche(18, "Demain les chats"),
+				new LivreBroche(19, "Depuis l'au-delï¿½"), new LivreBroche(20, "La Boï¿½te de Pandore")
 		// ,
 //				new CompactDisk(21, "Angels Fall First"),
 //				new CompactDisk(22, "Oceanborn"),
@@ -70,7 +78,7 @@ public class DonneesTestsMediathequeRepository implements MediathequeRepository 
 //				new CompactDisk(29, "Mutter"),
 //				new CompactDisk(30, "Reise, Reise"),
 //				new CompactDisk(31, "Rosenrot"),
-//				new CompactDisk(32, "Liebe ist für alle da")
+//				new CompactDisk(32, "Liebe ist fï¿½r alle da")
 		);
 	}
 }

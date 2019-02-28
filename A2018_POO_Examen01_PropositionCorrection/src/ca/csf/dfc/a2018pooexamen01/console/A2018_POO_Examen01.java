@@ -11,14 +11,19 @@ public class A2018_POO_Examen01 {
 		System.out.println(mediathequeRepository.getMediaById(7).getTitre());
 		System.out.println();
 		mediathequeRepository.getMedia().stream().map(m -> m.getTitre()).forEach(System.out::println);
-		System.out.println();
-		mediathequeRepository.trouverMediaParExpressionEtType("fourmi", "").stream().map(m -> m.getTitre()).forEach(System.out::println);
+		System.out.println();		System.out.println();		System.out.println();
+		mediathequeRepository.trouverMediaParExpression("fourmi").stream().map(m -> m.getTitre()).forEach(System.out::println);
 		
 		Mediatheque mediatheque = new Mediatheque(mediathequeRepository);
 		
-		System.out.println("le gros tests toi !");
-		
 		// Votre code ici
-		
+		System.out.println();		System.out.println();		System.out.println();
+		mediatheque.emprunter(1);
+		mediatheque.afficherMediaCorrespondantALaRecherche("fourmi", null);
+		System.out.println();		System.out.println();		System.out.println();
+		mediatheque.rendre(1);
+		mediatheque.afficherMediaCorrespondantALaRecherche("fourmi", "");
+		System.out.println();		System.out.println();		System.out.println();
+
 	}
 }
