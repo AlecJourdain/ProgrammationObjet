@@ -16,6 +16,8 @@ public class A2018_POO_Examen01 {
 		
 		Mediatheque mediatheque = new Mediatheque(mediathequeRepository);
 		
+		System.out.println("le gros tests toi !");
+		
 		// Votre code ici
 		
 	}
