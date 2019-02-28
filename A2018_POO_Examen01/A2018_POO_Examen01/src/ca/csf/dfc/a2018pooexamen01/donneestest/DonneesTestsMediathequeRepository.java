@@ -44,7 +44,7 @@ public class DonneesTestsMediathequeRepository implements MediathequeRepository 
 		Stream<Media> streamMedia = m_ListeMedia
 										.stream()
 										.filter(m -> m.getTitre().toLowerCase().contains(texteExpression));
-		if (p_TypeMedia != null) {
+		if (p_TypeMedia != null || p_TypeMedia != "") {
 			streamMedia = streamMedia
 							.filter(typeMediaNotNull -> typeMediaNotNull.getType().contains(p_TypeMedia));
 		}
